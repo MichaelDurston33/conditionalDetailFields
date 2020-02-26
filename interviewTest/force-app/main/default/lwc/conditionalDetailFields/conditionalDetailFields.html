@@ -1,0 +1,11 @@
+<template>
+    <lightning-record-edit-form record-id={recordId} object-api-name={objectApiName}>
+        <template for:each={fields} for:item="field">
+            <lightning-output-field key={field} field-name={field}>
+            </lightning-output-field>
+        </template>
+    </lightning-record-edit-form>
+</template>
+
+<!-- Lightning record edit form takes the recordId and objectAPIName which it gets through the .js file.
+    It then loops through all the fields in the fields array and creates an output field for each. -->
