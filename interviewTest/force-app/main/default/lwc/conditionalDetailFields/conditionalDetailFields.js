@@ -10,17 +10,17 @@ export default class ConditionalDetailFields extends LightningElement {
 
   async connectedCallback() {
     try {
-      var roleId = await getCurrentUserRoleId();
+      var roleId = await getCurrentUserRoleId(); //Calls apex class and gets the ID of the role currently viewing the record.
       var recordDetails = await getCurrentRecordDetails({
         recordId: this.recordId
-      });
+      }); //Gets the details of the record currently being viewed.
 
       //If the role is CEO and the number of employees on the account is over 5000, display the field 'NumberOfEmployees'.
       switch (roleId) {
         case "00E3z000002I435EAC":
           if (recordDetails.NumberOfEmployees > 5000) {
             this.fields.includes("NumberOfEmployees")
-              ? null
+              ? null //If this.fields already includes NumberOfEmployees, don't push it. (Prevents duplicates)
               : this.fields.push("NumberOfEmployees");
           }
           break;
